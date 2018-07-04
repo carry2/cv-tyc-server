@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Configuration后面的status，这个用于设置log4j2自身内部的信息输出，可以不设置，当设置成trace时，
+     你会看到log4j2内部各种详细输出。可以设置成OFF(关闭) 或 Error(只输出错误信息)。
+     600s 刷新此配置
+-->
+<Configuration status="WARN" monitorInterval="600">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT" ignoreExceptions="false">
+			<PatternLayout
+				pattern="%n%-d{yyyy-MM-dd HH:mm:ss}%n[%p]-[Thread: %t]-[%C.%M()]: %m%n" />
+		</Console>
+		<!-- <RollingFile name="RollingFile" fileName="/data/logs/cvs-tianyancha.log"
+			filePattern="/data/logs/cvs-tianyancha/$${date:yyyy-MM}/cvs-tianyancha-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout
+				pattern="%n%-d{yyyy-MM-dd HH:mm:ss}%n[%p]-[Thread: %t]-[%C.%M()]: %m%n" />
+			<SizeBasedTriggeringPolicy size="50MB" />
+		</RollingFile> -->
+	</Appenders>
+
+	<Loggers>
+		<logger name="org.mybatis" level="debug" additivity="true" />
+		<logger name="org.elasticsearch" level="debug" additivity="true" />
+		<logger name="cn.com.chinaventure" level="debug" additivity="true" />
+		<Root level="info">
+			<AppenderRef ref="Console" />
+			<!-- <AppenderRef ref="RollingFile" /> -->
+		</Root>
+	</Loggers>
+</Configuration>
